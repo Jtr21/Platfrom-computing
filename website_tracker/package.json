@@ -1,0 +1,14 @@
+{
+  "name": "website_tracker",
+  "version": "1.0.0",
+  "description": "travking activitivies on about me page",
+  "main": "selenium_tutorial.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "jtr21",
+  "license": "ISC",
+  "dependencies": {
+    "selenium-webdriver": "^4.18.1"
+  }
+}
