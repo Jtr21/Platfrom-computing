@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+import mainpicture from './platform computing hwk1.jpg';
 import './App.css';
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
     </header>
     
     <div class="mypic">
-        <img src="./imgs_vids/platform computing hwk1.jpg"/>
+        <img src={mainpicture} alt="mainpic"/>
     </div>
 
     <div class="p1">
