@@ -25,6 +25,6 @@ const assert = require("assert");
   } catch (e) {
     console.log(e)
   } finally {
-    await driver.quit();
+    //await driver.quit();
   }
 }())
