@@ -23,9 +23,9 @@ The following **bonus** features are implemented:
 ## Screenshot and/or Video Walkthrough
 
 <img src="https://imgur.com/gallery/4rAXx5x" title='Example Video Walkthrough' width='' alt='Example Video Walkthrough' />
-<img src="../Images/About_me_on_react.png" title='About Me on React' width='' alt='ABout me' />
-<img src="../Images/selenium_tutorial_output.png" title='Selenium tutorial output' width='' alt='Selenium output' />
-<img src="../Images/metric_tracker_output.png" title='metric tracker output' width='' alt='metric stats' />
+<img src="./Images/About_me_on_react.png" title='About Me on React' width='' alt='ABout me' />
+<img src="./Images/selenium_tutorial_output.png" title='Selenium tutorial output' width='' alt='Selenium output' />
+<img src="./Images/metric_tracker_output.png" title='metric tracker output' width='' alt='metric stats' />
 
 
 ## Notes:
