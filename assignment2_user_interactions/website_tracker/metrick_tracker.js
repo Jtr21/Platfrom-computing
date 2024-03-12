@@ -1,7 +1,6 @@
 const { Builder, By, Key, until } = require('selenium-webdriver');
 const axios = require('axios');
-
-let metrics = [];
+var metrics = [];
 let count=0;
 
 async function trackMetrics() {
@@ -14,7 +13,7 @@ async function trackMetrics() {
   // Track presence time 
   const startTime = Date.now();
   let presenceTime = 0;
-  while (presenceTime < 50000) {  // Track for 50 seconds (in milliseconds)
+  while (true) {  // Track for 50 seconds (in milliseconds)
     const currentTime = Date.now();
     presenceTime = currentTime - startTime;
     var timeonsite = presenceTime / 1000;
@@ -41,10 +40,8 @@ async function trackMetrics() {
 
       count++;
     }
+    console.log(metrics);
   }
-
-  // Close the browser window
-  await driver.quit();
 }
 
 async function getUserCity() {
@@ -59,5 +56,3 @@ async function getUserCity() {
 }
 
 trackMetrics();
-
-console.log(metrics);
