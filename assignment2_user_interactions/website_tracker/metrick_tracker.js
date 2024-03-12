@@ -1,6 +1,8 @@
 const { Builder, By, Key, until } = require('selenium-webdriver');
+const axios = require('axios');
 
 let metrics = [];
+let count=0;
 
 async function trackMetrics() {
   // Set up the WebDriver (make sure you have the appropriate WebDriver executable in your PATH)
@@ -25,33 +27,37 @@ async function trackMetrics() {
     var pix_scrolled = currentScroll / scrollHeight;
     console.log(`Scrolled ${pix_scrolled} pixels`);
     metrics.push(pix_scrolled);
-
-    // Read text content within the page
-    const pageText = await driver.findElement(By.tagName('body')).getText();
-    console.log(`Text within the page: ${pageText}`);
-    metrics.push(pageText);
-
-    // Track user's location on the webpage
-    const userLocation = await driver.executeScript("return [window.scrollX, window.scrollY];");
-    console.log(`User location: ${userLocation}`);
-    metrics.push(userLocation);
-
     await driver.sleep(2000);
 
-    // Track clicks
-    // const buttons = await driver.findElements(By.tagName("button"));
-    // let numClicks = 0;
+    
+    while (count<1){
+      const pageText = await driver.findElement(By.tagName('body')).getText();
+      console.log(`Text within the page: ${pageText}`);
+      metrics.push(pageText);
 
-    // for (const button of buttons) {
-    //   await button.click();
-    //   numClicks++;
-    // }
+      const city = await getUserCity();
+      console.log(`User city: ${city}`);
+      metrics.push(city);
 
-    // console.log(`Number of clicks: ${numClicks}`);
+      count++;
+    }
   }
 
   // Close the browser window
   await driver.quit();
-  
-  return metrics;
 }
+
+async function getUserCity() {
+  try {
+    const response = await axios.get('https://ipinfo.io/json');
+    const { city } = response.data;
+    return city;
+  } catch (error) {
+    console.error('Error fetching user city:', error.message);
+    return 'Unknown';
+  }
+}
+
+trackMetrics();
+
+console.log(metrics);
