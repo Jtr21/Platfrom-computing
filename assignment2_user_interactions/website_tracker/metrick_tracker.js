@@ -1,5 +1,6 @@
 const { Builder, By, Key, until } = require('selenium-webdriver');
 
+let metrics = [];
 
 async function trackMetrics() {
   // Set up the WebDriver (make sure you have the appropriate WebDriver executable in your PATH)
@@ -7,23 +8,33 @@ async function trackMetrics() {
 
   // Navigate to your website 
   await driver.get("http://localhost:3000/");
-  let metrics=[];
+
   // Track presence time 
   const startTime = Date.now();
   let presenceTime = 0;
   while (presenceTime < 50000) {  // Track for 50 seconds (in milliseconds)
     const currentTime = Date.now();
     presenceTime = currentTime - startTime;
-    var  timeonsite=presenceTime / 1000;
+    var timeonsite = presenceTime / 1000;
     console.log(`Presence time: ${timeonsite} seconds`);
     metrics.push(timeonsite);
 
     // Track scrolling
     const scrollHeight = await driver.executeScript("return document.body.scrollHeight");
     const currentScroll = await driver.executeScript("return window.pageYOffset");
-    var pix_scrolled=currentScroll/scrollHeight;
+    var pix_scrolled = currentScroll / scrollHeight;
     console.log(`Scrolled ${pix_scrolled} pixels`);
     metrics.push(pix_scrolled);
+
+    // Read text content within the page
+    const pageText = await driver.findElement(By.tagName('body')).getText();
+    console.log(`Text within the page: ${pageText}`);
+    metrics.push(pageText);
+
+    // Track user's location on the webpage
+    const userLocation = await driver.executeScript("return [window.scrollX, window.scrollY];");
+    console.log(`User location: ${userLocation}`);
+    metrics.push(userLocation);
 
     await driver.sleep(2000);
 
@@ -41,9 +52,6 @@ async function trackMetrics() {
 
   // Close the browser window
   await driver.quit();
-  console.log(metrics);
+  
+  return metrics;
 }
-
-// Run the function
-trackMetrics();
-
