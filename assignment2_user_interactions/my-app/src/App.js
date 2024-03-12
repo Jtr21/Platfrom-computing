@@ -46,7 +46,7 @@ function App() {
     <footer>
         <h1>
             This concludes my assignment.
-            <a href=" "></a>
+            <a href=" https://github.com/Jtr21/Platfrom-computing/tree/master">Github</a>
         </h1>
     </footer>
     </div>
