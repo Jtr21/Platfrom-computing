@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "jsdom": "^24.0.0",
+    "selenium-webdriver": "^4.19.0"
+  }
+}
